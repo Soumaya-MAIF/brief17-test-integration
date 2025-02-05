@@ -23,4 +23,6 @@ public class Student implements Serializable {
 
     @Column(name = "address")
     private String address;
+
+
 }
