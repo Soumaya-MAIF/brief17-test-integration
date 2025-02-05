@@ -3,22 +3,14 @@ name: Build with Maven
 on: [pull_request, push]
 
 jobs:
-  build:
-    runs-on: ubuntu-latest  # Or another desired runner OS
-
-    steps:
-      - uses: actions/checkout@v3  # Checkout your code from the repository
-
-      - name: Set up JDK 17  # Change version if needed
-        uses: actions/setup-java@v3
-        with:
-          java-version: '17'
-          cache: 'maven'  # Optionally cache Maven packages
-          distribution: ''
+    test:
+     runs-on: ubuntu-latest
+     steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
 
       - name: Build with Maven
         run: mvn package -DskipTests  # Optionally add -DskipTests to skip tests
 
-
-      - name: Test
-        run: mvn --batch-mode -Dmaven.test.failure.ignore=true test
+      - name: Build and test with Maven
+        run: mvn -B package
