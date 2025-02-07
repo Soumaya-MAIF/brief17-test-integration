@@ -27,6 +27,7 @@ class StudentServiceIntegrationTest {
 
     @Test
     void shouldSaveAndRetrieveStudent() {
+
         // Créer un nouvel étudiant
         Student student = new Student();
         student.setName("John Doe");
@@ -35,10 +36,10 @@ class StudentServiceIntegrationTest {
         // Sauvegarder l'étudiant
         Student savedStudent = studentService.saveStudent(student);
 
-        // Récupérer l'étudiant par ID
+        // Récupérer l'étudiant sauvegardé
         Optional<Student> retrievedStudent = studentService.findStudentById(savedStudent.getId());
 
-        // Vérifier que l'étudiant récupéré est le même que l'étudiant sauvegardé
+        // Comparer l'étudiant récupéré avec l'étudiant sauvegardé
         assertThat(retrievedStudent).isPresent();
         assertThat(retrievedStudent.get().getName()).isEqualTo("John Doe");
         assertThat(retrievedStudent.get().getAddress()).isEqualTo("john.doe@example.com");
